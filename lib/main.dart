@@ -7,10 +7,13 @@ import 'constants.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const Bookly());
+
   await Hive.initFlutter();
   Hive.registerAdapter(BookEntityAdapter());
-  await Hive.openBox(kLeadingBooks);
+  await Hive.openBox<BookEntity>(kLeadingBooks);
+  await Hive.openBox<BookEntity>(kNewestBooks);
+
+  runApp(const Bookly());
 }
 
 class Bookly extends StatelessWidget {

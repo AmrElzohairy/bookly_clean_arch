@@ -26,6 +26,8 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSoure {
       'volumes?Filtering=free-ebooks&Sorting=newest',
     );
     List<BookEntity> books = getParsedList(data);
+    saveBooksWithHive(books, kNewestBooks);
+
 
     return books;
   }
