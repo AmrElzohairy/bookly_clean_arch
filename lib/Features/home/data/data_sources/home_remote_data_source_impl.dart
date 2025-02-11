@@ -15,7 +15,7 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSoure {
       'volumes?Filtering=free-ebooks&q=programming',
     );
     List<BookEntity> books = getParsedList(data);
-    saveBooksWithHive(books);
+    saveBooksWithHive(books, kLeadingBooks);
 
     return books;
   }
@@ -39,7 +39,7 @@ getParsedList(data) {
   return list;
 }
 
-void saveBooksWithHive(List<BookEntity> books) {
-  var box = Hive.box(kLeadingBooks);
+void saveBooksWithHive(List<BookEntity> books, String boxName) {
+  var box = Hive.box(boxName);
   box.addAll(books);
 }
