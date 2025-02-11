@@ -1,0 +1,1 @@
+/mnt/o/bookly_clean_arch/build/app/intermediates/cxx/Debug/66q1gz6r/obj/armeabi-v7a
