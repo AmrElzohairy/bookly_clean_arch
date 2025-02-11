@@ -1,7 +1,9 @@
 import 'package:bookly_clean_arch/Features/home/data/data_sources/home_remote_data_soure.dart';
 import 'package:bookly_clean_arch/Features/home/data/models/book_model/book_data.dart';
 import 'package:bookly_clean_arch/Features/home/domain/entities/book_entity.dart';
+import 'package:bookly_clean_arch/constants.dart';
 import 'package:bookly_clean_arch/core/utils/api_services.dart';
+import 'package:hive_flutter/adapters.dart';
 
 class HomeRemoteDataSourceImpl implements HomeRemoteDataSoure {
   final ApiServices api;
@@ -13,6 +15,7 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSoure {
       'volumes?Filtering=free-ebooks&q=programming',
     );
     List<BookEntity> books = getParsedList(data);
+    saveBooksWithHive(books);
 
     return books;
   }
@@ -34,4 +37,9 @@ getParsedList(data) {
     list.add(BookData.fromJson(bookData));
   }
   return list;
+}
+
+void saveBooksWithHive(List<BookEntity> books) {
+  var box = Hive.box(kLeadingBooks);
+  box.addAll(books);
 }
