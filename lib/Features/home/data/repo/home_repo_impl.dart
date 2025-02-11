@@ -15,12 +15,14 @@ class HomeRepoImpl extends HomeRepo {
   @override
   Future<Either<Failure, List<BookEntity>>> getLeadingBooks() async {
     try {
-      var localBooks = homeLocalDataSourceImpl.getLeadingBooks();
-      if (localBooks.isNotEmpty) {
-        return right(localBooks);
+      List<BookEntity> books;
+
+      books = homeLocalDataSourceImpl.getLeadingBooks();
+      if (books.isNotEmpty) {
+        return right(books);
       } else {
-        var data = await homeRemoteDataSourceImpl.getLeadingBooks();
-        return right(data);
+        books = await homeRemoteDataSourceImpl.getLeadingBooks();
+        return right(books);
       }
     } on Exception catch (e) {
       return left(ServerFailure(e.toString()));
@@ -30,12 +32,14 @@ class HomeRepoImpl extends HomeRepo {
   @override
   Future<Either<Failure, List<BookEntity>>> getNewestBooks() async {
     try {
-      var localBooks = homeLocalDataSourceImpl.getNewestBooks();
-      if (localBooks.isNotEmpty) {
-        return right(localBooks);
+      List<BookEntity> books;
+
+      books = homeLocalDataSourceImpl.getNewestBooks();
+      if (books.isNotEmpty) {
+        return right(books);
       } else {
-        var data = await homeRemoteDataSourceImpl.getNewestBooks();
-        return right(data);
+        books = await homeRemoteDataSourceImpl.getNewestBooks();
+        return right(books);
       }
     } on Exception catch (e) {
       return left(ServerFailure(e.toString()));
