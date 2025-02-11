@@ -45,9 +45,7 @@ class BookListViewItem extends StatelessWidget {
                       'Harry Potter and the Goblet of Fire',
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
-                      style: Styles.textStyle20.copyWith(
-           
-                      ),
+                      style: Styles.textStyle20.copyWith(),
                     ),
                   ),
                   const SizedBox(
