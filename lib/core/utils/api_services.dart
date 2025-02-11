@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
 
-class DioConsumer {
+class ApiServices {
   final Dio dio;
 
-  DioConsumer(this.dio) {
+  ApiServices(this.dio) {
     dio.options.baseUrl = "https://www.googleapis.com/books/v1";
     dio.interceptors.add(LogInterceptor(
       responseBody: true,
