@@ -4,7 +4,7 @@ class ApiServices {
   final Dio dio;
 
   ApiServices(this.dio) {
-    dio.options.baseUrl = "https://www.googleapis.com/books/v1";
+    dio.options.baseUrl = "https://www.googleapis.com/books/v1/";
     dio.interceptors.add(LogInterceptor(
       responseBody: true,
       requestBody: true,

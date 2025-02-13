@@ -12,7 +12,7 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSoure {
   @override
   Future<List<BookEntity>> getLeadingBooks() async {
     var data = await api.get(
-      'volumes?Filtering=free-ebooks&q=programming',
+      'volumes?Filtering=free-ebooks&q=featured',
     );
     List<BookEntity> books = getParsedList(data);
     saveBooksWithHive(books, kLeadingBooks);
@@ -28,7 +28,6 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSoure {
     List<BookEntity> books = getParsedList(data);
     saveBooksWithHive(books, kNewestBooks);
 
-
     return books;
   }
 }
@@ -42,6 +41,6 @@ getParsedList(data) {
 }
 
 void saveBooksWithHive(List<BookEntity> books, String boxName) {
-  var box = Hive.box(boxName);
+  var box = Hive.box<BookEntity>(boxName);
   box.addAll(books);
 }
